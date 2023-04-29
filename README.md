@@ -34,24 +34,35 @@ Neste módulo, aprofundei meus conhecimentos sobre as características da progra
 
 #* e Java Avançado *
 
-• Módulo 1 - Criando APIs com Spring Boot: Neste módulo, aprendi a criar APIs RESTful usando o Spring Boot, incluindo a criação de endpoints, controllers, services e models.
+## Módulo 1 - Criando APIs com Spring Boot: 
+Neste módulo, aprendi a criar APIs RESTful usando o Spring Boot, incluindo a criação de endpoints, controllers, services e models.
 
-• Módulo 2 - Exceptions, debug e logs: Este módulo foi dedicado ao aprendizado do tratamento de exceções em Java, incluindo o uso de blocos try-catch e a criação de exceções personalizadas. Também aprendi a usar ferramentas de debug e logging para identificar e corrigir problemas em minhas aplicações.
+## Módulo 2 - Exceptions, debug e logs: 
+Este módulo foi dedicado ao aprendizado do tratamento de exceções em Java, incluindo o uso de blocos try-catch e a criação de exceções personalizadas. Também aprendi a usar ferramentas de debug e logging para identificar e corrigir problemas em minhas aplicações.
 
-• Módulo 3 - Building com Maven e Gradle: Neste módulo, aprendi a usar ferramentas de build como o Maven e o Gradle para gerenciar as dependências de meus projetos Java.
+## Módulo 3 - Building com Maven e Gradle:
+ Neste módulo, aprendi a usar ferramentas de build como o Maven e o Gradle para gerenciar as dependências de meus projetos Java.
 
-• Módulo 4 - Padrões de projeto e design de código: Este módulo foi dedicado ao aprendizado de padrões de projeto em Java, incluindo o padrão de projeto DAO e o padrão de projeto Singleton. Também aprendi a escrever código limpo e legível usando as melhores práticas de design de código.
+## Módulo 4 - Padrões de projeto e design de código:
+ Este módulo foi dedicado ao aprendizado de padrões de projeto em Java, incluindo o padrão de projeto DAO e o padrão de projeto Singleton. Também aprendi a escrever código limpo e legível usando as melhores práticas de design de código.
 
-• Módulo 5 - Testes automatizados: Neste módulo, aprendi a escrever testes automatizados para minhas aplicações Java usando ferramentas como JUnit e Mockito.
+## Módulo 5 - Testes automatizados:
+ Neste módulo, aprendi a escrever testes automatizados para minhas aplicações Java usando ferramentas como JUnit e Mockito.
 
-• Módulo 6 - Bancos de dados relacionais (parte 1): Este módulo foi dedicado ao aprendizado de bancos de dados relacionais em Java, incluindo o uso do Spring Data JPA para criar e acessar tabelas no banco de dados.
+## Módulo 6 - Bancos de dados relacionais (parte 1):
+ Este módulo foi dedicado ao aprendizado de bancos de dados relacionais em Java, incluindo o uso do Spring Data JPA para criar e acessar tabelas no banco de dados.
 
-• Módulo 7 - Bancos de dados relacionais (parte 2): Neste módulo, aprofundei meus conhecimentos sobre bancos de dados relacionais em Java, incluindo o uso de consultas JPQL e SQL para buscar dados no banco de dados.
+## Módulo 7 - Bancos de dados relacionais (parte 2):
+ Neste módulo, aprofundei meus conhecimentos sobre bancos de dados relacionais em Java, incluindo o uso de consultas JPQL e SQL para buscar dados no banco de dados.
 
-• Módulo 8 - Segurança de aplicações: Este módulo foi dedicado ao aprendizado da segurança de aplicações em Java, incluindo o uso de autenticação e autorização para proteger minhas APIs.
+## Módulo 8 - Segurança de aplicações:
+ Este módulo foi dedicado ao aprendizado da segurança de aplicações em Java, incluindo o uso de autenticação e autorização para proteger minhas APIs.
 
-• Módulo 9 - Concorrência e paralelismo: Neste módulo, aprendi a escrever código que aproveita a concorrência e o paralelismo em Java para melhorar o desempenho de minhas aplicações.
+## Módulo 9 - Concorrência e paralelismo:
+ Neste módulo, aprendi a escrever código que aproveita a concorrência e o paralelismo em Java para melhorar o desempenho de minhas aplicações.
 
-• Módulo 10 - Deploy de aplicações: Este módulo foi dedicado ao aprendizado do deploy de aplicações Java em ambientes de produção, incluindo a configuração de servidores de aplicação e a configuração de ambientes de produção.
+## Módulo 10 - Deploy de aplicações:
+ Este módulo foi dedicado ao aprendizado do deploy de aplicações Java em ambientes de produção, incluindo a configuração de servidores de aplicação e a configuração de ambientes de produção.
 
-• Módulo 11 - Deploy de aplicações: Neste módulo, aprofundei meus conhecimentos sobre o deploy de aplicações Java em ambientes de produção, incluindo a configuração de pipelines de CI/CD.
+## Módulo 11 - Deploy de aplicações:
+ Neste módulo, aprofundei meus conhecimentos sobre o deploy de aplicações Java em ambientes de produção, incluindo a configuração de pipelines de CI/CD.
