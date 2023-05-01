@@ -13,6 +13,8 @@ public class Segundo {
         primeiro.metodoProtect();
 
         primeiro.metodoDefault();
+
+        Primeiro.metodoStatic();
     }
 
 }

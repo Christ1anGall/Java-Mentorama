@@ -1,3 +1,4 @@
+
 /**
  * Principal
  */
@@ -22,6 +23,6 @@ public class Principal {
     }
 
     private int ErrorPorRetorarTipoErrado() {
-        return 'BATAAN';
+        return "BATAAN";
     }
 }
