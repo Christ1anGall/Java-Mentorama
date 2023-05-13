@@ -24,5 +24,14 @@ public class Main {
 
         int valor4 = valor3;
 
+        Integer valor5 = null; // error
+
+        valor5.doubleValue(); /* Null pointer access: The variable valor5 can only be null at this location */ // não
+                                                                                                               // acontece
+                                                                                                               // com
+                                                                                                               // tipos
+                                                                                                               // primitivos
+
+                                                                                                               
     }
 }
