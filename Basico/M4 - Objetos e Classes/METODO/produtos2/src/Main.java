@@ -1,4 +1,4 @@
-package produtos.src;
+package produtos2.src;
 
 import produtos.src.models.Produto;
 import java.util.Scanner;

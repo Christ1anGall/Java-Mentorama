@@ -1,4 +1,4 @@
-package produtos.src.models;
+package produtos2.src.models;
 
 public class Produto {
     private int id;
