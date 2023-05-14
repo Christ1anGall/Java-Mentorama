@@ -48,8 +48,7 @@ public class App {
         // Imprimir lista de presença
         System.out.println("Lista de presença da " + salaDeAula.getNome() + ":");
         for (Presenca presenca : listaDePresenca.getPresencas()) {
-            System.out
-                    .println(presenca.getAluno().getNome() + " - " + (presenca.isPresente() ? "presente" : "ausente"));
+            System.out.println(presenca.getAluno().getNome() + " - " + (presenca.isPresente() ? "presente" : "ausente"));
         }
 
         scanner.close();
