@@ -1,5 +1,5 @@
 
-public class Main {
+public class MainTeste {
     public static void main(String[] args) {
         // PRIMITIVOS
         byte tipoByte = 127;
@@ -32,6 +32,5 @@ public class Main {
                                                                                                                // tipos
                                                                                                                // primitivos
 
-                                                                                                               
     }
 }

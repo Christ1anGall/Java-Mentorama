@@ -1,9 +1,9 @@
-package produtos.src.db;
+package src.db;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import produtos.src.models.Produto;
+import src.models.Produto;
 
 public class ProdutosDB {
     private List<Produto> produtoList = new ArrayList<>();
