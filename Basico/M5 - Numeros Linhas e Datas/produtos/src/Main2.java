@@ -8,7 +8,7 @@ import java.util.Scanner;
 import produtos.src.db.ProdutosDB;
 import produtos.src.models.Produto;
 
-public class Main {
+public class Main2 {
 
     static ProdutosDB produtosDB = new ProdutosDB();
 

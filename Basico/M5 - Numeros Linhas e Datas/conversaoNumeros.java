@@ -1,6 +1,6 @@
 public class conversaoNumeros {
     public static void main(String[] args) {
-
+/*
         int valor1 = 1;
         long valorLong = valor1; // já converteu
 
@@ -15,6 +15,8 @@ public class conversaoNumeros {
         int valor3 = (int) valorDouble;
 
         long valorLong4 = (long) valorDouble;
+        
+        */
 
     }
 }
