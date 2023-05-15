@@ -1,9 +1,10 @@
 package src;
 
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends Conta implements ITributos {
 
     private Double chequeEspecial;
     private Double limiteChequeEspecial;
+    private Double taxaDeImposto = 0.01;
 
     public ContaCorrente(Integer numero, Integer agencia, String banco, Double saldo, Double chequeEspecial,
             Double limiteChequeEspecial) {
@@ -53,6 +54,11 @@ public class ContaCorrente extends Conta {
             throw new IllegalArgumentException("O valor para depósito deve ser maior que zero.");
         }
         this.saldo += valor;
+    }
+
+    @Override
+    public Double calcularImposto() {
+        return this.saldo * this.taxaDeImposto;
     }
 
 }

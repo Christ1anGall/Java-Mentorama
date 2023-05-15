@@ -1,9 +1,10 @@
 package src;
 
-public class ContaSalario extends Conta {
+public class ContaSalario extends Conta implements ITributos {
 
     private static final int LIMITE_SAQUES = 2;
     private int numSaquesRealizados;
+    private Double taxaDeImposto = 0.005;
 
     public ContaSalario(int numero, int agencia, String banco, Double saldo) {
         super(numero, agencia, banco, saldo);
@@ -36,5 +37,10 @@ public class ContaSalario extends Conta {
             throw new IllegalArgumentException("O valor para depósito deve ser maior que zero.");
         }
         this.saldo += valor;
+    }
+
+    @Override
+    public Double calcularImposto() {
+        return this.saldo * this.taxaDeImposto;
     }
 }

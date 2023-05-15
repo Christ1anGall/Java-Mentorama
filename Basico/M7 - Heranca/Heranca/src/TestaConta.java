@@ -1,4 +1,4 @@
-package Heranca;
+package Heranca.src;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class TestaConta {
         // Conta c1 = new Conta(1, 1, "Banco do Brasil", 25000.00);
         // System.out.println(c1);
 
-        ContaCorrente cc1 = new ContaCorrente(2, 2, "Banco do Brasil", 35000.00, 1000.500);
+        ContaCorrente cc1 = new ContaCorrente(2, 2, "Banco do Brasil", 35000.00, 1000.500, null);
 
         System.out.println(cc1);
 
