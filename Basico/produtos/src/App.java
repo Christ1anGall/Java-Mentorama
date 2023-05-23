@@ -6,19 +6,23 @@ import java.util.List;
 import java.util.Scanner;
 
 import src.db.EstoqueDB;
+import src.db.PedidoVendaDB;
 import src.db.ProdutosDB;
 import src.db.UsuarioDB;
 import src.models.Admin;
 import src.models.Cliente;
 import src.models.Estoque;
+import src.models.PedidoVenda;
 import src.models.Produto;
 import src.models.Usuario;
+import src.validadores.ValidadorPedidoVenda;
 
 public class App {
 
     static ProdutosDB produtosDB = new ProdutosDB();
     static UsuarioDB usuariosDB = new UsuarioDB();
     static EstoqueDB estoqueDB = new EstoqueDB();
+    static PedidoVendaDB pedidoVendaDB = new PedidoVendaDB();
 
     public static void main(String[] args) throws Exception {
 
@@ -27,9 +31,8 @@ public class App {
         int opt;
 
         do {
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
+
+            System.out.println("8 - Listar pedidos de Venda");
             System.out.println("7 - Listar Estoque de Produtos");
             System.out.println("6 - Estoque de Produtos");
             System.out.println("5 - Listar Usuarios");
@@ -40,9 +43,6 @@ public class App {
             System.out.println("0 ----- Sair");
             Scanner scanner = new Scanner(System.in);
             System.out.println(" Qual Operação você deseja realizar: ");
-            System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
 
             opt = scanner.nextInt();
 
@@ -183,6 +183,68 @@ public class App {
                 break;
 
             }
+            case 8: {
+                Scanner scanner = new Scanner(System.in);
+
+                System.out.println("*************************************************");
+
+                System.out.println("Informe o ID do Cliente");
+
+                int idCliente = scanner.nextInt();
+                Cliente cliente = (Cliente) usuariosDB.getUsuarioPorID(idCliente);
+
+                System.out.println("****************************************************");
+                System.out.println("*****************Listando clientes******************");
+                System.out.println("ID: " + cliente.getId());
+                System.out.println("Nome: " + cliente.getNome());
+                System.out.println("Tipo: " + cliente.getTipoUsuario());
+                System.out.println("****************************************************");
+
+                System.out.println("Informe o ID do Estoque");
+
+                int idEstoque = scanner.nextInt();
+
+                System.out.println("****************************************************");
+
+                Estoque estoque = estoqueDB.getEstoque(idEstoque);
+
+                System.out.println("Produto ID:" + estoque.getId());
+
+                System.out.println("Produto Descrição:" + estoque.getProduto().getDescricao());
+
+                System.out.println("Produto Validade:" + estoque.getProduto().getDate());
+
+                System.out.println("Informe a quantidade a ser vendida");
+
+                int quantidade = scanner.nextInt();
+
+                PedidoVenda pedidoVenda = new PedidoVenda(cliente, estoque, quantidade);
+
+                ValidadorPedidoVenda validadorPedidoVenda = new ValidadorPedidoVenda(pedidoVenda);
+                if (validadorPedidoVenda.ehValidado()) {
+
+                    pedidoVendaDB.addPedidoVendas(pedidoVenda);
+                } else {
+                    System.out.println(validadorPedidoVenda.getErrors());
+                }
+
+                break;
+            }
+
+            case 9: {
+                System.out.println("*************************************************");
+                System.out.println("*****************Listando Users******************");
+                for (PedidoVenda pedidoVenda : PedidoVendaDB.getPedidoVendas()) {
+
+                    System.out.println("ID: " + pedidoVenda.getId());
+                    System.out.println("Produto: " + pedidoVenda.getEstoque().getProduto().getDescricao());
+                    System.out.println("Cliente: " + pedidoVenda.getCliente().getNome());
+                    System.out.println("Quantidade: " + pedidoVenda.getQuantidade());
+                    System.out.println("Valor Total: " + pedidoVenda.getValorTotal());
+                }
+                System.out.println("*************************************************");
+            }
+
             case 0: {
                 break;
             }

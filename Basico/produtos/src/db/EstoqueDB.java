@@ -8,7 +8,7 @@ import java.util.Map;
 import src.models.Estoque;
 
 public class EstoqueDB {
-    private Map<String, Estoque> estoqueDBMap = new HashMap<>();
+    private static Map<String, Estoque> estoqueDBMap = new HashMap<>();
 
     public Map<String, Estoque> getEstoqueDBMap() {
         return estoqueDBMap;
@@ -22,6 +22,10 @@ public class EstoqueDB {
         }
 
         return estoques;
+    }
+
+    public Estoque getEstoque(int idEstoque) {
+        return estoqueDBMap.get(idEstoque);
     }
 
     public void addNovoEstoque(Estoque estoque) {

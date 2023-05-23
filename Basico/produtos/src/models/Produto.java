@@ -34,4 +34,8 @@ public class Produto {
         return validade.format(davaValidade);
     }
 
+    public Date getDataValidade() {
+        return null;
+    }
+
 }

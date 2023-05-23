@@ -12,6 +12,15 @@ public class UsuarioDB {
         return usuarioList;
     }
 
+    public Usuario getUsuarioPorID(int id) {
+
+        return usuarioList.stream()
+                .filter(usuario -> usuario.getId() == id)
+                .findFirst()
+                .get();
+
+    }
+
     public static void addNovoUsuario(Usuario usuario) {
         Integer id = usuarioList.size() + 1;
         usuario.setId(id);
