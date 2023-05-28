@@ -6,10 +6,10 @@ public class ContaCorrente extends Conta implements ITributos {
     private Double limiteChequeEspecial;
     private Double taxaDeImposto = 0.01;
 
-    public ContaCorrente(Integer numero, Integer agencia, String banco, Double saldo, Double chequeEspecial,
+    public ContaCorrente(Integer numero, Integer agencia, String banco, Double saldo, double d,
             Double limiteChequeEspecial) {
         super(numero, agencia, banco, saldo);
-        this.chequeEspecial = chequeEspecial;
+        this.chequeEspecial = d;
         this.limiteChequeEspecial = limiteChequeEspecial;
     }
 
@@ -25,7 +25,7 @@ public class ContaCorrente extends Conta implements ITributos {
     }
 
     @Override
-    public void sacar(Double valor) {
+    public Double sacar(Double valor) {
         if (valor <= 0) {
             throw new IllegalArgumentException("O valor para saque deve ser maior que zero.");
         }
@@ -46,6 +46,7 @@ public class ContaCorrente extends Conta implements ITributos {
         } else {
             this.saldo -= valor;
         }
+        return this.saldo;
     }
 
     @Override

@@ -38,13 +38,17 @@ public abstract class Conta {
         this.banco = banco;
     }
 
-    public abstract Double getSaldo();
+    public Double getSaldo() {
+        return this.saldo;
+    }
 
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
-    public abstract void sacar(Double valor);
+    public Double sacar(Double valor) {
+        return 0.0;
+    }
 
     public abstract void depositar(Double valor);
 

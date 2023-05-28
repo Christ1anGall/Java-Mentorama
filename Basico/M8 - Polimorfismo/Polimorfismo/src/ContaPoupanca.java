@@ -15,20 +15,24 @@ public class ContaPoupanca extends Conta {
         this.saldoNoAniversario = saldo;
     }
 
-    @Override
-    public Double getSaldo() {
-        return this.saldo + this.taxaJuros * this.saldo;
+    public Double getSaldo(int dia) {
+
+        if (dia >= this.diaAniversario) {
+            return this.saldo + this.taxaJuros * this.saldo;
+        } else {
+            return this.saldo;
+        }
     }
 
     @Override
-    public void sacar(Double valor) {
+    public Double sacar(Double valor) {
         if (valor <= 0) {
             throw new IllegalArgumentException("O valor para saque deve ser maior que zero.");
         }
         if (valor > this.getSaldo()) {
             throw new IllegalArgumentException("Saldo insuficiente para realizar o saque.");
         }
-        this.saldo -= valor;
+        return this.saldo -= valor;
     }
 
     @Override
@@ -48,4 +52,12 @@ public class ContaPoupanca extends Conta {
 
         this.saldo += valor;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " ContaPoupanca [diaAniversario=" + diaAniversario + ", taxaJuros=" + taxaJuros
+                + ", saldoNoAniversario="
+                + saldoNoAniversario + "]";
+    }
+
 }

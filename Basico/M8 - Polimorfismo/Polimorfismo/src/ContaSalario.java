@@ -17,7 +17,7 @@ public class ContaSalario extends Conta implements ITributos {
     }
 
     @Override
-    public void sacar(Double valor) {
+    public Double sacar(Double valor) {
         if (valor <= 0) {
             throw new IllegalArgumentException("O valor para saque deve ser maior que zero.");
         }
@@ -29,6 +29,7 @@ public class ContaSalario extends Conta implements ITributos {
         }
         this.saldo -= valor;
         this.numSaquesRealizados++;
+        return this.saldo;
     }
 
     @Override
@@ -42,5 +43,10 @@ public class ContaSalario extends Conta implements ITributos {
     @Override
     public Double calcularImposto() {
         return this.saldo * this.taxaDeImposto;
+    }
+
+    @Override
+    public String toString() {
+        return "ContaSalario [numSaquesRealizados=" + numSaquesRealizados + ", taxaDeImposto=" + taxaDeImposto + "]";
     }
 }
