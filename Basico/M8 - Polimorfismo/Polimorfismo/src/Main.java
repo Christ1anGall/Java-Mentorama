@@ -1,8 +1,11 @@
 package src;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.OptionalDouble;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,49 +32,31 @@ public class Main {
 
         cli1.autentica("123456");
 
-        List<Cliente> clientes = new ArrayList<>();
-        clientes.add(cli1);
-        clientes.add(cli2);
-        clientes.add(cli3);
-        clientes.add(cli4);
-        clientes.add(cli5);
-        clientes.add(cli6);
-        clientes.add(cli7);
+        List<Cliente> clientes = Arrays.asList(cli1, cli2, cli3, cli4, cli5, cli6, cli7);
 
-        for (Cliente cliente : clientes) {
-            if (cliente.getCompras() >= 20) {
-                System.out.println(cliente.getCompras());
-            }
-        }
+        clientes.stream()
+                .filter(cli -> cli.getCompras() >= 20)
+                .map(Cliente::getCompras)
+                .forEach(System.out::println);
 
         // Cliente com mais compras
-        Cliente clienteMaisCompras = null;
-        int maxCompras = 0;
-        for (Cliente cliente : clientes) {
-            if (cliente.getCompras() > maxCompras) {
-                maxCompras = cliente.getCompras();
-                clienteMaisCompras = cliente;
-            }
-        }
+        Cliente clienteMaisCompras = clientes.stream()
+                .max(Comparator.comparingInt(Cliente::getCompras))
+                .orElse(null);
         System.out.println("Cliente com mais compras: " + clienteMaisCompras);
 
         // Cliente com menos compras
-        Cliente clienteMenosCompras = null;
-        int minCompras = Integer.MAX_VALUE;
-        for (Cliente cliente : clientes) {
-            if (cliente.getCompras() < minCompras) {
-                minCompras = cliente.getCompras();
-                clienteMenosCompras = cliente;
-            }
-        }
+        Cliente clienteMenosCompras = clientes.stream()
+                .min(Comparator.comparingInt(Cliente::getCompras))
+                .orElse(null);
         System.out.println("Cliente com menos compras: " + clienteMenosCompras);
 
         // Média de compras
-        int totalCompras = 0;
-        for (Cliente cliente : clientes) {
-            totalCompras += cliente.getCompras();
+        OptionalDouble mediaCompras = clientes.stream()
+                .mapToInt(Cliente::getCompras)
+                .average();
+        if (mediaCompras.isPresent()) {
+            System.out.println("Média de compras: " + mediaCompras.getAsDouble());
         }
-        double mediaCompras = (double) totalCompras / clientes.size();
-        System.out.println("Média de compras: " + mediaCompras);
     }
 }
