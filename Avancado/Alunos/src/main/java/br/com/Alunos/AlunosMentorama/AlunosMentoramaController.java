@@ -1,19 +1,10 @@
 package br.com.Alunos.AlunosMentorama;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
@@ -21,72 +12,44 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 @RequestMapping("/AlunosMentorama")
 public class AlunosMentoramaController {
 
-    private final List<Alunos> alunos;
+    private final AlunosMentoramaService alunosService;
 
-    public AlunosMentoramaController() {
-        this.alunos = new ArrayList<>();
-
+    public AlunosMentoramaController(AlunosMentoramaService alunosService) {
+        this.alunosService = alunosService;
     }
 
     @GetMapping
     public List<Alunos> findOrAll(@RequestParam(required = false) String nome, Integer idade) {
-
-        if (nome != null && idade == null) {
-            return alunos.stream().filter(alu -> alu.getNome().contains(nome))
-                    .collect(Collectors.toList());
-        }
-
-        if (idade != null && nome == null) {
-            return alunos.stream().filter(alu -> alu.getIdade().equals(idade))
-                    .collect(Collectors.toList());
-        }
-
-        if (idade != null && nome != null) {
-            return alunos.stream().filter(alu -> alu.getIdade().equals(idade)).filter(
-                    alu -> alu.getNome().contains(nome))
-                    .collect(Collectors.toList());
-        }
-
-        return alunos;
+        return alunosService.findAlunos(nome, idade);
     }
 
     @GetMapping("/{id}")
-    public Alunos findById(@PathVariable("id") Integer id) {
-        return this.alunos.stream().filter(alu -> alu.getId().equals(id)).findFirst().orElse(null);
+    public ResponseEntity<Alunos> findById(@PathVariable("id") Integer id) {
+        Alunos aluno = alunosService.findAlunoById(id);
+        return ResponseEntity.ok(aluno);
     }
 
     @PostMapping
-    public ResponseEntity add(@RequestBody final Alunos aluno) {
-        if (aluno.getId() == null) {
-            aluno.setId(alunos.size() + 1);
-        }
-        alunos.add(aluno);
-        return new ResponseEntity<>(aluno.getNome(), HttpStatus.CREATED);
+    public ResponseEntity<String> add(@RequestBody final Alunos aluno) {
+        String nome = alunosService.addAluno(aluno);
+        return new ResponseEntity<>(nome, HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity update(@RequestBody final Alunos aluno) {
-        if (!aluno.getNome().isEmpty()) {
-            alunos.stream()
-                    .filter(alu -> alu.getId().equals(aluno.getId()))
-                    .forEach(alu -> alu.setNome(aluno.getNome()));
-        }
-
-        if (aluno.getIdade() != null) {
-            alunos.stream()
-                    .filter(alu -> alu.getId().equals(aluno.getId()))
-                    .forEach(alu -> alu.setIdade(aluno.getIdade()));
-        }
-
+    public ResponseEntity<Void> update(@RequestBody final Alunos aluno) {
+        alunosService.updateAluno(aluno);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Integer id) {
-
-        alunos.removeIf(alu -> alu.getId().equals(id));
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        alunosService.deleteAluno(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
+    @ExceptionHandler(AlunoNotFoundException.class)
+    public ResponseEntity<String> handleAlunoNotFoundException(AlunoNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
 }
