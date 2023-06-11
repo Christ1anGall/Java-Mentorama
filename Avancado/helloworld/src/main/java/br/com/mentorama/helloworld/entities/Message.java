@@ -1,4 +1,4 @@
-package br.com.mentorama.helloworld;
+package br.com.mentorama.helloworld.entities;
 
 public class Message {
 
