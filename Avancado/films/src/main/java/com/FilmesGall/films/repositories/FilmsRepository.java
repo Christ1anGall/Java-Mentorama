@@ -5,13 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.FilmesGall.films.entities.Film;
 
+@Repository
 public class FilmsRepository {
-    private Map<Integer, Film> films;
+    private final Map<Integer, Film> films;
+    private final Map<String, Integer> nomeAnoDiretorMap;
 
     public FilmsRepository() {
-        films = new HashMap<>();
+        this.films = new HashMap<>();
+        this.nomeAnoDiretorMap = new HashMap<>();
     }
 
     public List<Film> findAll() {
@@ -33,27 +38,59 @@ public class FilmsRepository {
     }
 
     public Integer add(Film film) {
+        validaFilm(film);
+
         Integer id = generateId();
         film.setId(id);
         films.put(id, film);
+
+        String key = generateNomeAnoDiretorKey(film);
+        nomeAnoDiretorMap.put(key, id);
+
         return id;
     }
 
     public void update(Film film) {
         Integer id = film.getId();
         if (films.containsKey(id)) {
+            validaFilm(film);
+
+            String key = generateNomeAnoDiretorKey(film);
+            nomeAnoDiretorMap.put(key, id);
+
             films.put(id, film);
         } else {
-            throw new IllegalArgumentException("não encontrado");
+            throw new RuntimeException("Filme não encontrado.");
         }
     }
 
     public void delete(Integer id) {
-        films.remove(id);
+        Film film = films.remove(id);
+        if (film != null) {
+            String key = generateNomeAnoDiretorKey(film);
+            nomeAnoDiretorMap.remove(key);
+        }
+    }
+
+    private void validaFilm(Film film) {
+        if (film.getNota() < 1 || film.getNota() > 5) {
+            throw new RuntimeException("A nota do filme deve ser um inteiro entre 1 e 5.");
+        }
+
+        String key = generateNomeAnoDiretorKey(film);
+
+        Integer existingFilmId = nomeAnoDiretorMap.get(key);
+
+        if (existingFilmId != null) {
+            throw new RuntimeException("Já existe um filme com o mesmo conjunto de nome, ano e diretor.");
+        }
     }
 
     private Integer generateId() {
-
         return films.size() + 1;
+    }
+
+    private String generateNomeAnoDiretorKey(Film film) {
+        return film.getNome() + "-" + film.getAno() + "-" + film.getNomeDoDiretor();
     }
 }

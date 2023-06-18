@@ -4,7 +4,7 @@ public class Film extends CaracteristicasFilm {
     private Integer id;
     private String nome;
 
-    public Film(Integer id, String nome, String nomeDoDiretor, int ano, int nota) {
+    public Film(Integer id, String nome, String nomeDoDiretor, Integer ano, Integer nota) {
         super();
         this.id = id;
         this.nome = nome;

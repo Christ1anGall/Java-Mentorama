@@ -3,6 +3,8 @@ package com.FilmesGall.films.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,18 +44,29 @@ public class FilmsController {
     }
 
     @PostMapping
-    public Integer addFilm(@RequestBody Film film) {
-        return filmsServices.add(film);
+    public ResponseEntity addFilm(@RequestBody Film film) {
+        try {
+            Integer id = filmsServices.add(film);
+            return new ResponseEntity<>(id, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PutMapping("/{id}")
-    public void updateFilm(@PathVariable Integer id, @RequestBody Film film) {
-        film.setId(id);
-        filmsServices.update(film);
+    public ResponseEntity updateFilm(@PathVariable Integer id, @RequestBody Film film) {
+        try {
+            film.setId(id);
+            filmsServices.update(film);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteFilm(@PathVariable Integer id) {
+    public ResponseEntity deleteFilm(@PathVariable Integer id) {
         filmsServices.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
